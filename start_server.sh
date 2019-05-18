@@ -31,10 +31,10 @@ prd() {
         ./flaskapp.wsgi
 }
 
-# Activate conda environment if the EE environment variable is set and that environment ins't active.
+# Activate conda environment if the environment variable is set and that environment ins't active.
 # Mainly for starting from the Dockerfile
-if [[ -n $EE_CONDA_ENV && $EE_CONDA_ENV != $CONDA_DEFAULT_ENV ]]; then
-    conda activate $EE_CONDA_ENV
+if [[ -n $CONDA_ENV && $CONDA_ENV != $CONDA_DEFAULT_ENV ]]; then
+    conda activate $CONDA_ENV
 fi
 
 $*

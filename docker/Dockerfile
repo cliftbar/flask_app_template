@@ -1,9 +1,9 @@
 FROM continuumio/miniconda3
-LABEL author="cameron@extensibleenergy.com"
+LABEL author="cwbarclift@gmail.com"
 
 SHELL ["/bin/bash", "-c"]
 
-ENV EE_CONDA_ENV=flask_app
+ENV CONDA_ENV=flask_app
 ENV BASH_ENV=~/.bashrc
 
 # install apache and other apt requirements and dev tools, clean up cache
@@ -24,12 +24,12 @@ WORKDIR /flask_app
 
 COPY ./requirements/ ./requirements/
 
-RUN conda create --yes --quiet --name $EE_CONDA_ENV python=3.6
+RUN conda create --yes --quiet --name $CONDA_ENV python=3.6
 
-RUN conda activate $EE_CONDA_ENV \
+RUN conda activate $CONDA_ENV \
     && pip install --quiet --no-cache-dir mod_wsgi xmljson schema flask-cors
 
-RUN conda activate $EE_CONDA_ENV \
+RUN conda activate $CONDA_ENV \
     && conda install --quiet --yes --file ./requirements/conda_requirements_explicit_linux.txt \
     && conda clean --all --yes --quiet
 
